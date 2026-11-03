@@ -11,8 +11,10 @@
 
 ## Установка
 
-1. Скачайте **[apk/Rialto.apk](apk/Rialto.apk)**. Свежую сборку также можно взять в разделе *Actions → Сборка APK → Artifacts*.
-2. Откройте файл на телефоне и разрешите установку из неизвестных источников.
+1. Скачайте APK по прямой ссылке: **[⬇ Rialto.apk](https://github.com/lokofanmoscow-rgb/Rialto/releases/latest/download/Rialto.apk)**
+   (или откройте раздел [Releases](https://github.com/lokofanmoscow-rgb/Rialto/releases) и нажмите `Rialto.apk` в блоке *Assets*).
+   Файл `apk/Rialto.apk` в самом репозитории GitHub показывает как набор символов — его качать не нужно.
+2. Откройте скачанный файл на телефоне и разрешите установку из неизвестных источников.
 3. Нужен Android 7.0 или новее с обновлённым Android System WebView (требуется WebGL 2).
 
 ## Режимы игры
@@ -66,7 +68,7 @@ export ANDROID_HOME=/путь/к/android-sdk
 
 Скрипт обходится без Gradle. Он собирает веб-часть (esbuild), упаковывает её в assets, компилирует Java (javac + d8) и
 подписывает APK ключом `android/rialto-release.keystore`. Подпись у всех сборок одна, поэтому новые версии ставятся
-поверх старых. При каждом push GitHub Actions собирает APK (`.github/workflows/build-apk.yml`).
+поверх старых. При каждом push GitHub Actions собирает APK и публикует его как новый релиз (`.github/workflows/build-apk.yml`).
 
 ### Тесты
 

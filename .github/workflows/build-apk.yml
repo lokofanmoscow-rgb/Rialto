@@ -3,8 +3,10 @@ name: Сборка APK
 on:
   push:
     branches: ['**']
-  pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -34,9 +36,27 @@ jobs:
           node test/rules.test.mjs
 
       - name: Сборка APK
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: 1.0.${{ github.run_number }}
         run: ./build_apk.sh
 
       - uses: actions/upload-artifact@v4
         with:
           name: Rialto-apk
           path: apk/Rialto.apk
+
+      # Публикация APK как релиза: файл скачивается по ссылке
+      # https://github.com/<владелец>/<репозиторий>/releases/latest/download/Rialto.apk
+      - name: Релиз
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Риальто 1.0.${{ github.run_number }}
+          target_commitish: ${{ github.sha }}
+          make_latest: true
+          files: apk/Rialto.apk
+          body: |
+            Установочный файл для Android — **Rialto.apk** (ниже, в разделе Assets).
+            Откройте его на телефоне и разрешите установку из неизвестных источников.
+            Нужен Android 7.0+ с обновлённым Android System WebView.
