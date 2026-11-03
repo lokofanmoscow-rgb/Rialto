@@ -1,0 +1,16 @@
+{
+  "name": "rialto-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Риальто — экономическая настольная игра (веб-часть Android-приложения)",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test/rules.test.mjs && node test/engine.test.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "three": "0.180.0",
+    "ws": "8.18.3"
+  }
+}
